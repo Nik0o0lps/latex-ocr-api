@@ -1,0 +1,64 @@
+version: '3.8'
+
+services:
+  latex-ocr-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: latex-ocr-api
+    ports:
+      - "8000:8000"     # FastAPI
+      - "11434:11434"   # Ollama (opcional expor)
+    environment:
+      # Carregar do .env
+      - SECRET_KEY=${SECRET_KEY}
+      - OLLAMA_BASE_URL=http://localhost:11434
+      - OLLAMA_MODEL=${OLLAMA_MODEL:-llava:7b}
+      - OLLAMA_FALLBACK_MODELS=${OLLAMA_FALLBACK_MODELS}
+      - MAX_IMAGE_SIZE_MB=${MAX_IMAGE_SIZE_MB:-10}
+      - RATE_LIMIT_PER_MINUTE=${RATE_LIMIT_PER_MINUTE:-10}
+      - DEBUG=${DEBUG:-False}
+      - LOG_LEVEL=${LOG_LEVEL:-INFO}
+    volumes:
+      # Persistir modelos Ollama
+      - ollama-data:/root/.ollama
+      # Logs (opcional)
+      - ./logs:/app/logs
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/api/v1/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+    # Recursos (ajustar conforme necessário)
+    deploy:
+      resources:
+        limits:
+          cpus: '4'
+          memory: 8G
+        reservations:
+          cpus: '2'
+          memory: 4G
+
+  # Redis (opcional - para cache/rate limiting)
+  redis:
+    image: redis:7-alpine
+    container_name: latex-ocr-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/data
+    restart: unless-stopped
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
+
+volumes:
+  ollama-data:
+    driver: local
+  redis-data:
+    driver: local
