@@ -1,4 +1,4 @@
-# 🦙 LaTeX OCR API
+#  LaTeX OCR API
 
 [![Python](https://img.shields.io/badge/Python-3.11+-blue.svg)](https://www.python.org/downloads/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-0.109+-green.svg)](https://fastapi.tiangolo.com/)
@@ -6,19 +6,19 @@
 
 Professional REST API for extracting LaTeX code from images of mathematical equations using **Llama Vision** (via Ollama).
 
-## ✨ Features
+##  Features
 
-- 🔍 **OCR for Mathematical Equations** - Extract LaTeX from images
-- 🔄 **Automatic Fallback** - Multiple model support with automatic failover
-- ✅ **LaTeX Validation** - Automatic cleaning and validation
-- 📦 **Batch Processing** - Process multiple images at once (up to 10)
-- 🔐 **API Key Authentication** - Secure access control
-- 🚦 **Rate Limiting** - Configurable request limits
-- 📊 **Metadata & Metrics** - Processing time and model tracking
-- 🐳 **Docker Ready** - Full containerization with Ollama included
-- ☁️ **Azure Ready** - Prepared for cloud deployment
+-  **OCR for Mathematical Equations** - Extract LaTeX from images
+-  **Automatic Fallback** - Multiple model support with automatic failover
+-  **LaTeX Validation** - Automatic cleaning and validation
+-  **Batch Processing** - Process multiple images at once (up to 10)
+-  **API Key Authentication** - Secure access control
+-  **Rate Limiting** - Configurable request limits
+-  **Metadata & Metrics** - Processing time and model tracking
+-  **Docker Ready** - Full containerization with Ollama included
+-  **Azure Ready** - Prepared for cloud deployment
 
-## 🚀 Quick Start
+##  Quick Start
 
 ### Prerequisites
 
@@ -68,7 +68,7 @@ uvicorn app.main:app --reload --host 0.0.0.0 --port 8000
 http://localhost:8000/docs
 ```
 
-## 🐳 Docker Deployment
+##  Docker Deployment
 
 ### Using Docker Compose (Recommended)
 
@@ -89,7 +89,7 @@ docker-compose logs -f
 docker-compose down
 ```
 
-## 📖 API Documentation
+##  API Documentation
 
 ### Authentication
 
@@ -136,7 +136,7 @@ file: <image-file>
 }
 ```
 
-## 🔧 Configuration
+##  Configuration
 
 Edit `.env` file to configure:
 
@@ -170,7 +170,7 @@ RATE_LIMIT_PER_MINUTE=10
 LOG_LEVEL=INFO
 ```
 
-## 📊 Usage Examples
+##  Usage Examples
 
 ### Python
 ```python
@@ -211,7 +211,7 @@ const data = await response.json();
 console.log('LaTeX:', data.latex);
 ```
 
-## 🏗️ Architecture
+##  Architecture
 
 ```
 latex-ocr-api/
@@ -242,7 +242,7 @@ latex-ocr-api/
 └── README.md
 ```
 
-## 🔒 Security Considerations
+##  Security Considerations
 
 - **Never commit `.env`** - Contains secrets
 - **Change API_KEY** in production - Use strong random key
@@ -250,7 +250,7 @@ latex-ocr-api/
 - **Enable CORS restrictions** - Only allow trusted origins
 - **Monitor rate limits** - Prevent abuse
 
-## 🐛 Troubleshooting
+##  Troubleshooting
 
 ### Ollama connection failed
 ```bash
@@ -270,11 +270,11 @@ ollama pull llava:7b
 ollama list
 ```
 
-## 📝 License
+##  License
 
 MIT License - see [LICENSE](LICENSE) file for details.
 
-## 🤝 Contributing
+##  Contributing
 
 Contributions are welcome! Please:
 
@@ -284,7 +284,7 @@ Contributions are welcome! Please:
 4. Add tests
 5. Submit a pull request
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - [Llama Vision](https://ai.meta.com/llama/) by Meta
 - [Ollama](https://ollama.com/) for easy model deployment
@@ -292,4 +292,4 @@ Contributions are welcome! Please:
 
 ---
 
-Made with ❤️ using Llama Vision and FastAPI
+Made with Llama Vision and FastAPI
